@@ -1,4 +1,4 @@
-package com.wesleytb.project_login.models;
+package com.wesleytb.project_login.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
