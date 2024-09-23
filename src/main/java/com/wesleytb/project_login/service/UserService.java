@@ -1,5 +1,6 @@
 package com.wesleytb.project_login.service;
 
+import com.wesleytb.project_login.dto.UserGetDto;
 import com.wesleytb.project_login.dto.UserPostDto;
 import com.wesleytb.project_login.dto.UserPutDto;
 import com.wesleytb.project_login.model.User;
@@ -24,9 +25,10 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<User> getAllUsers() throws ServiceException {
+    public List<UserGetDto> getAllUsers() throws ServiceException {
         try {
-            return this.userRepository.findAll();
+            return this.userRepository.findAll()
+                .stream().map(UserGetDto::new).toList();
         }
         catch (DataAccessException e) {
             throw new ServiceException("Erro ao buscar usuários", e);
@@ -37,9 +39,10 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Optional<User> getUserById(Long id) throws ServiceException {
+    public Optional<UserGetDto> getUserById(Long id) throws ServiceException {
         try {
-            return this.userRepository.findById(id);
+            return this.userRepository.findById(id)
+                .map(UserGetDto::new);
         }
         catch (DataAccessException e) {
             throw new ServiceException(String.format("Erro ao buscar o usuário %d.", id), e);

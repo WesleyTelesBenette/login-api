@@ -1,5 +1,6 @@
 package com.wesleytb.project_login.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wesleytb.project_login.model.BaseUser;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;
@@ -32,6 +33,7 @@ public class UserPutDto extends BaseUser {
     @Length(max = 255, message = "O e-mail deve ter no máximo 255 caracteres.")
     private String email;
 
+    @JsonIgnore
     @Nullable
     @Length(min = 8, max = 50, message = "A senha deve ter entre 8 e 50 caracteres.")
     private String password;
