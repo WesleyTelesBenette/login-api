@@ -1,6 +1,9 @@
-package com.wesleytb.project_login.service.interfaces;
+package com.wesleytb.project_login.model;
 
 public interface IUser {
+
+    Long getId();
+    void setId(Long id);
 
     String getName();
     void setName(String name);

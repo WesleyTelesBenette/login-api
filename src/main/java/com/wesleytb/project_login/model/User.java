@@ -1,14 +1,11 @@
 package com.wesleytb.project_login.model;
 
-import com.wesleytb.project_login.service.interfaces.IUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +14,7 @@ import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "login_app_user")
-public class User implements IUser {
+public class User extends BaseUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,4 +35,8 @@ public class User implements IUser {
     @Length(min = 8, max = 50, message = "A senha deve ter entre 8 e 50 caracteres.")
     @Column(name = "senha")
     private String password;
+
+    public User(BaseUser user) {
+        super(user);
+    }
 }
